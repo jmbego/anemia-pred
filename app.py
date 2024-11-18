@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
 import pickle
-#import numpy as np
-#import pandas as pd
+import numpy 
+import sklearn
+import pandas 
 
 app = Flask(__name__)
 
@@ -38,7 +39,7 @@ def get_recommendation(anemia_level):
 
 # Load the pickled encoder, pipeline, and model
 
-with open('anemia_model.pkl', 'rb') as f:
+with open('anemia_prediction_model.pkl', 'rb') as f:
     encoder,pipeline, model = pickle.load(f)
 
 
@@ -84,7 +85,7 @@ def make_prediction():
 
 
     # Convert the input data to a DataFrame
-    input_df = pd.DataFrame([input_data])
+    input_df = pandas.DataFrame([input_data])
 
     # Preprocess the input data using the pipeline
     processed_input = pipeline.transform(input_df)
@@ -117,4 +118,6 @@ def make_prediction():
 
 if __name__ == "__main__":
     app.run(debug = True)
+    
+#end 
 
