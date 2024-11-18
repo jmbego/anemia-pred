@@ -3,5 +3,5 @@ Werkzeug
 gunicorn
 pandas
 numpy
-scikit-learn==1.2.2
+scikit-learn
 
