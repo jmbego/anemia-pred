@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anemia Level Prediction Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Anemia Level Prediction Results</h1>
+    </header>
+    
+    <!-- Horizontal Navigation Bar -->
+    <nav>
+        <ul class="navbar">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('general_info') }}">General Info</a></li>
+            <li><a href="{{ url_for('factors') }}">Factors Affecting Anemia</a></li>
+            <li><a href="{{ url_for('predict') }}">Predict Anemia Level</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <div class="prediction-result">
+            <!-- Wrap each heading in a box-container div for the box style -->
+            <div class="box-container">
+                <h2>Results</h2>
+            </div>
+            
+            <div class="section-box">  
+                <p>{{ prediction_text or "Prediction not available" }}</p>
+            </div>
+        
+            <!-- Recommendations Section -->
+            <div class="box-container">
+                <h3>Recommendations:</h3>
+            </div>
+            <div class="section-box"> 
+                <p>{{ recommendation_text or "No recommendation available" }}</p> 
+            </div>
+        
+            <!-- Additional Info Section -->
+            <div class="box-container">
+                <h3>Additional Info:</h3>
+            </div>
+            <div class="section-box"> 
+                <ul>
+                    <li><a href="https://www.who.int/news-room/fact-sheets/detail/anaemia#:~:text=Anaemia%2- Anemia WHO" target="_blank">Anemia - WHO</a></li>
+                    <li><a href="https://www.nationwidechildrens.org/conditions/health-library/iron-deficiency-anemia-in-children" target="_blank">Iron-Deficiency Anemia in Children - Nationwide Children's Hospital</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Anemia Level Prediction</p>
+    </footer>
+</body>
+</html>

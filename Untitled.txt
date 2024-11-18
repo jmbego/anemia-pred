@@ -1,0 +1,15 @@
+
+In this section, we focused on building and evaluating different machine learning models to predict the severity of anemia based on socio-economic factors. 
+
+We started with a Logistic Regression model, which helped us understand the relationship between various factors and anemia severity. We then explore more advanced models, 
+
+including a Decision Tree, which makes decisions based on a series of yes/no questions, 
+
+a Random Forest, which combines many decision trees for better accuracy, and
+
+ a K-Nearest Neighbors model, which predicts anemia severity by looking at similar cases. 
+
+After training these models on the data, we evaluate their performance by comparing how well they predict the correct severity of anemia using metrics like accuracy, precision, and recall. These evaluation helped us identify knn model as the most reliable for making accurate predictions and provide insights into how socio-economic factors influence anemia severity.
+
+overfitting
+biasness 

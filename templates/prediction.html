@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anemia Level Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Anemia Level Prediction</h1>
+    </header>
+    <nav>
+        <ul class="navbar">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('general_info') }}">General Info</a></li>
+            <li><a href="{{ url_for('factors') }}">Factors Affecting Anemia</a></li>
+            <li><a href="{{ url_for('predict') }}">Predict Anemia Level</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="form-container">
+            <form action="/predict" method="post">
+                <div class="form-group">
+                    <label for="Age">Age:</label>
+                    <input type="number" name="Age" required><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="Residence">Residence:</label>
+                    <select name="Residence" required>
+                        <option value="Rural">Rural</option>
+                        <option value="Urban">Urban</option>
+                    </select><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="Highest educational level">Highest Educational Level:</label>
+                    <select name="Highest educational level" required>
+                        <option value="No education">No education</option>
+                        <option value="Primary">Primary</option>
+                        <option value="Secondary">Secondary</option>
+                        <option value="Higher">Higher</option>
+                    </select><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="Wealth index">Wealth Index:</label>
+                    <select name="Wealth index" required>
+                        <option value="Poorest">Lowest Income (0 - 125 USD)</option>
+                        <option value="Poorer">Low Income (126 - 375 USD)</option>
+                        <option value="Middle">Middle Income (376 - 750 USD)</option>
+                        <option value="Richer">High Income (751 - 1,500 USD)</option>
+                        <option value="Richest">Highest Income (Above 1,500 USD)</option>
+                    </select><br>
+                </div>
+                
+
+                <div class="form-group">
+                    <label for="Births in last five years">Births in Last Five Years:</label>
+                    <input type="number" name="Births in last five years" required><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="Age of respondent at 1st birth">Age of Respondent at 1st Birth:</label>
+                    <input type="number" name="Age of respondent at 1st birth" required><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="Hemoglobin level">Hemoglobin Level:</label>
+                    <input type="number" step="0.1" name="Hemoglobin level" required><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="Have mosquito net">Have Mosquito Net:</label>
+                    <select name="Have mosquito net" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="marital status">Marital Status:</label>
+                    <select name="marital status" required>
+                        <option value="Married">Married</option>
+                        <option value="Living with partner">Living with partner</option>
+                        <option value="Never in union">Never in union</option>
+                        <option value="Widowed">Widowed</option>
+                        <option value="No longer living together/separated">No longer living together/separated</option>
+                        <option value="Divorced">Divorced</option>
+                    </select><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="Residing with partner">Residing with Partner:</label>
+                    <select name="Residing with partner" required>
+                        <option value="Living with her">Living with her</option>
+                        <option value="Staying elsewhere">Staying elsewhere</option>
+                    </select><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="Had fever in last two weeks">Had Fever in Last Two Weeks:</label>
+                    <select name="Had fever in last two weeks" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select><br>
+                </div>
+
+                <div class="form-group">
+                    <label for="Taking iron medication">Taking Iron Medication:</label>
+                    <select name="Taking iron medication" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select><br>
+                </div>
+
+                <button type="submit">Predict Anemia Level</button>
+            </form>
+        </div>
+
+        <!-- Show the result after form submission -->
+        {% if prediction_text %}
+            <div class="result-box">
+                <h3>Predicted Anemia Level:</h3>
+                <p><strong>{{ prediction_text }}</strong></p>
+            </div>
+        {% endif %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Anemia Level Prediction</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Anemia Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff8c00; /* Orange shade */
+            font-size: 2.5em;
+            margin-top: 50px;
+        }
+
+        nav {
+            background-color: #ff8c00; /* Orange shade */
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .navbar {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        .navbar li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar li a:hover {
+            background-color: #e67e22; /* Darker orange */
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .content p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Anemia Prediction App</h1>
+    
+    <nav>
+        <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            <li><a href="/general_info">General Info</a></li>
+            <li><a href="/factors">Factors Affecting Anemia</a></li>
+            <li><a href="/predict">Predict Anemia Level</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <p>This application helps predict anemia levels in children based on various factors. It uses a predictive model trained on relevant data to identify potential risks of anemia and provide tailored recommendations to help manage and prevent the condition.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Anemia Level Prediction. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factors Affecting Anemia</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Factors Affecting Anemia</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul class="navbar">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('general_info') }}">General Info</a></li>
+            <li><a href="{{ url_for('factors') }}">Factors Affecting Anemia</a></li>
+            <li><a href="{{ url_for('predict') }}">Predict Anemia Level</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="section-box">
+            <h2>Socioeconomic Factors</h2>
+            <p>Socioeconomic status plays a significant role in the prevalence of anemia. Poverty, lack of access to healthcare, and poor nutrition are major contributing factors. In many low- and middle-income countries, limited resources and access to nutritious food can lead to iron deficiency and other nutritional deficits that cause anemia.</p>
+        </div>
+        
+        
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Anemia Level Prediction | <a href="#">Contact Us</a></p>
+    </footer>
+</body>
+</html>

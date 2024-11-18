@@ -1,0 +1,242 @@
+/* ------------- Reset & Basic Styling ------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ------------- Body Styling with Background Image and Transparency ------------- */
+body {
+    font-family: 'Arial', sans-serif;
+    background: 
+        linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), 
+        url('/static/images/background.jpg') no-repeat center center fixed;
+    background-size: cover; /* Cover entire screen */
+    color: #333; /* Default text color (black) */
+    line-height: 1.6;
+    display: flex; /* Flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
+    min-height: 100vh; /* Ensure the body takes up full screen height */
+}
+
+/* ------------- Header with Image Background and Transparency ------------- */
+header {
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        url('/static/images/anemic_child.jpg') no-repeat center;
+    background-size: cover;
+    color: white;
+    padding: 30px 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-top: 50px;
+    color: white; /* White text for main title over image */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Text shadow for readability */
+}
+
+/* ------------- Navbar Styling ------------- */
+nav {
+    background-color: rgba(204, 112, 0, 0.9); /* Darker orange navbar */
+    padding: 10px 0;
+    text-align: center;
+}
+
+.navbar {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar li {
+    display: inline;
+    margin: 0 20px;
+}
+
+.navbar li a {
+    text-decoration: none;
+    color: white; /* White text in navbar */
+    font-size: 1.2em;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar li a:hover {
+    background-color: #b35300; /* Darker orange for hover */
+}
+
+/* ------------- Main Content Styling ------------- */
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px 0;
+}
+
+.section-box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 15px 0;
+}
+
+.section-box h2, .section-box h3 {
+    font-size: 1.8em;
+    margin: 20px 0;
+    color: #ff8c00; /* Orange text for sub-headings */
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-box p {
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.6;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.section-box a {
+    color: #cc7000; /* Darker orange for links */
+    text-decoration: none;
+}
+
+.section-box a:hover {
+    text-decoration: underline;
+}
+/* ------------- Form Styling ------------- */
+form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 15px 0;
+    max-width: 1200px; /* Adjust width for more space */
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grid layout */
+    gap: 20px; /* Space between form fields */
+    align-items: center; /* Center items vertically */
+}
+
+form label {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    display: block;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* ------------- Center the button ------------- */
+form button[type="submit"] {
+    display: block; /* Ensures the button is a block-level element */
+    background-color: #cc7000; /* Darker orange */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1em;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    grid-column: 1 / -1; /* Makes the submit button span across the entire form */
+    margin-top: 20px; /* Adds space above the button */
+    justify-self: center; /* Center the button horizontally */
+}
+
+form button[type="submit"]:hover {
+    background-color: #b35300; /* Darker orange on hover */
+}
+
+/* ------------- Label and Input Alignment ------------- */
+form label, form select, form input[type="text"], form input[type="number"] {
+    display: inline-block;
+}
+
+
+
+/* ------------- Footer Styling ------------- */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    width: 100%;
+    margin-top: auto; /* Pushes the footer to the bottom */
+}
+
+footer a {
+    color: #ff8c00; /* Orange text for links in the footer */
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #b35300; /* Darker orange for footer links */
+    text-decoration: underline;
+}
+
+/* ------------- Button Styling ------------- */
+.button-primary {
+    display: inline-block;
+    background-color: #cc7000; /* Darker orange */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.button-primary:hover {
+    background-color: #b35300; /* Darker orange on hover */
+}
+
+
+
+
+
+/* Styles for boxed headings with orange color */
+.box-container {
+    background-color: #f9f3e0; /* Light beige background for the heading box */
+    border: 2px solid #e8b87c; /* Light orange border */
+    padding: 10px 15px;        /* Padding inside the box */
+    margin-bottom: 20px;       /* Space below the box */
+    border-radius: 8px;        /* Rounded corners */
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Styles for the heading texts within the box */
+.box-container h2, .box-container h3 {
+    color: #e67e22;            /* Orange color for heading text */
+    margin: 0;                 /* Remove default margins */
+    font-weight: bold;         /* Make headings bold */
+}
+
+/* Section-box for the prediction, recommendation, and links */
+.section-box {
+    background-color: #fafafa; /* Light background for result boxes */
+    border: 1px solid #ddd;    /* Light gray border */
+    padding: 20px;             /* Padding inside the box */
+    margin-bottom: 20px;       /* Space below each section */
+    border-radius: 6px;        /* Rounded corners */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
