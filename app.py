@@ -4,6 +4,13 @@ import pandas as pd
 
 app = Flask(__name__)
 
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Use $PORT if defined, else default to 5000
+    app.run(host="0.0.0.0", port=port)
+
+
 # Utility function to convert age to age group
 def convert_age_to_group(age):
     if 15 <= age <= 19:
