@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import pickle
-import numpy 
 import sklearn
 import pandas 
 
@@ -39,7 +38,7 @@ def get_recommendation(anemia_level):
 
 # Load the pickled encoder, pipeline, and model
 
-with open('anemia_prediction_model.pkl', 'rb') as f:
+with open('anemia_model.pkl', 'rb') as f:
     encoder,pipeline, model = pickle.load(f)
 
 
