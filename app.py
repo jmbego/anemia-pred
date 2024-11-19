@@ -1,27 +1,9 @@
 from flask import Flask, render_template, request
 import pickle
 import pandas as pd
-
-app = Flask(__name__)
-
 import os
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 18012))  # Use $PORT if defined, else default to 5000
-    app.run(host="0.0.0.0", port=port)
-    
-from flask import Flask, render_template
-
 app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return render_template('index.html')  # Ensure 'index.html' exists in your 'templates' folder
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=18013)
-
-
 
 # Utility function to convert age to age group
 def convert_age_to_group(age):
@@ -126,8 +108,19 @@ def make_prediction():
 
     except Exception as e:
         # Handle errors gracefully
-        return render_template('error.html', error_message=str(e))
+        return render_template('error.html', error_message=f"An error occurred: {str(e)}")
+
+# Error handling routes
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html', error_message="Page not found (404)."), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template('error.html', error_message="Internal server error (500)."), 500
 
 # Run the Flask app
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Use PORT from environment if available
+    debug_mode = os.environ.get('FLASK_DEBUG', 'false').lower() == 'true'
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
