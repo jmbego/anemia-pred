@@ -7,7 +7,7 @@ app = Flask(__name__)
 import os
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Use $PORT if defined, else default to 5000
+    port = int(os.environ.get("PORT", 18012))  # Use $PORT if defined, else default to 5000
     app.run(host="0.0.0.0", port=port)
     
 from flask import Flask, render_template
@@ -19,7 +19,7 @@ def home():
     return render_template('index.html')  # Ensure 'index.html' exists in your 'templates' folder
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    app.run(host='0.0.0.0', port=18013)
 
 
 
