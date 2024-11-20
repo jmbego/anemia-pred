@@ -1,18 +1,31 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 import pickle
-import requests  # For making HTTP requests
+import pandas as pd
 
-# Define functions for data processing, prediction, and recommendation
+# Load the pickled encoder, pipeline, and model
+with open('anemia_model.pkl', 'rb') as f:
+    encoder, pipeline, model = pickle.load(f)
+
+
+# Utility functions
 def convert_age_to_group(age):
     if 15 <= age <= 19:
         return '15-19'
     elif 20 <= age <= 24:
         return '20-24'
-    # ... define remaining age groups ...
+    elif 25 <= age <= 29:
+        return '25-29'
+    elif 30 <= age <= 34:
+        return '30-34'
+    elif 35 <= age <= 39:
+        return '35-39'
+    elif 40 <= age <= 44:
+        return '40-44'
+    elif 45 <= age <= 49:
+        return '45-49'
     else:
         return 'unknown'
+
 
 def get_recommendation(anemia_level):
     recommendations = {
@@ -23,69 +36,63 @@ def get_recommendation(anemia_level):
     }
     return recommendations.get(anemia_level, "No specific recommendation available.")
 
-def make_prediction(data):
-    # Load pickled encoder, pipeline, and model (assuming these are defined outside the function)
-    with open('anemia_model.pkl', 'rb') as f:
-        encoder, pipeline, model = pickle.load(f)
+
+# Map prediction to human-readable text
+prediction_map = {
+    "Not anemic": 'No Anemia',
+    "Mild": 'Mild Anemia',
+    "Moderate": 'Moderate Anemia',
+    "Severe": 'Severe Anemia'
+}
+
+# Streamlit App Layout
+st.title("Anemia Prediction App")
+
+st.sidebar.header("Input Features")
+age = st.sidebar.number_input("Age", min_value=15, max_value=49, value=25, step=1)
+births_last_5y = st.sidebar.selectbox("Births in last 5 years", ["Yes", "No"])
+age_first_birth = st.sidebar.number_input("Age of Respondent at 1st Birth", min_value=10, max_value=49, value=20)
+hemoglobin_level = st.sidebar.number_input("Hemoglobin Level", min_value=5.0, max_value=20.0, value=12.5, step=0.1)
+residence = st.sidebar.selectbox("Residence", ["Urban", "Rural"])
+education = st.sidebar.selectbox("Highest Educational Level", ["None", "Primary", "Secondary", "Higher"])
+wealth = st.sidebar.selectbox("Wealth Index", ["Poorest", "Poorer", "Middle", "Richer", "Richest"])
+mosquito_net = st.sidebar.selectbox("Have Mosquito Net", ["Yes", "No"])
+marital_status = st.sidebar.selectbox("Marital Status", ["Married", "Single", "Widowed", "Divorced"])
+living_with_spouse = st.sidebar.selectbox("Residing with Partner", ["Yes", "No"])
+had_fever = st.sidebar.selectbox("Had Fever in Last Two Weeks", ["Yes", "No"])
+taking_meds = st.sidebar.selectbox("Taking Iron Medication", ["Yes", "No"])
+
+if st.sidebar.button("Predict"):
+    # Map input to feature names
+    input_data = {
+        'Births_last_5y': births_last_5y,
+        'Age_first_birth': age_first_birth,
+        'Hemoglobin_level': hemoglobin_level,
+        'Age_group': convert_age_to_group(age),
+        'Area_Type': residence,
+        'Education_level': education,
+        'Wealth': wealth,
+        'Mosquito_net': mosquito_net,
+        'Marital_status': marital_status,
+        'Living_with_spouse': living_with_spouse,
+        'Had_fever': had_fever,
+        'Taking_meds': taking_meds
+    }
 
     # Convert input data to DataFrame
-    input_df = pd.DataFrame([data])
+    input_df = pd.DataFrame([input_data])
 
-    # Preprocess the input data using the pipeline
+    # Preprocess input data
     processed_input = pipeline.transform(input_df)
 
     # Make prediction
-    prediction = model.predict(processed_input)
+    prediction = model.predict(processed_input)[0]
+    prediction_text = prediction_map.get(prediction, "Unknown")
 
-    # Convert prediction to string and map to human-readable format
-    prediction_text = list(prediction)[0]
-    prediction_map = {
-        "Not anemic": 'No Anemia',
-        "Mild": 'Mild Anemia',
-        "Moderate": 'Moderate Anemia',
-        "Severe": 'Severe Anemia'
-    }
-    prediction_text = prediction_map.get(prediction_text)
-
-    # Get recommendation based on the anemia level
+    # Get recommendation
     recommendation_text = get_recommendation(prediction_text)
 
-    return prediction_text, recommendation_text
-
-# Streamlit app layout
-st.title('Anemia Prediction App')
-
-# User input fields
-age = st.number_input('Age:', min_value=15)
-births_last_five_years = st.number_input('Births in last five years:')
-# ... add other input fields based on your form ...
-
-# Button to trigger prediction
-if st.button('Predict Anemia Level'):
-    # Prepare user input data
-    data = {
-        'Births_last_5y': births_last_five_years,
-        'Age_group': convert_age_to_group(age),
-        # ... map other user input fields to a dictionary ...
-    }
-
-    # Send a POST request to the Flask API endpoint (replace with your Flask app URL)
-    response = requests.post('http://localhost:5000/predict', json=data)
-    prediction_data = response.json()
-
-    # Display prediction and recommendation
-    st.write(f"Predicted Anemia Level: {prediction_data['prediction']}")
-    st.write(f"Recommendation: {prediction_data['recommendation']}")
-
-# Define a hidden Flask app (can be placed at the bottom of the code)
-app = Flask(__name__)
-
-@app.route('/predict', methods=['POST'])
-def predict_anemia():
-    data = request.get_json()
-    prediction_text, recommendation_text = make_prediction(data)
-    return jsonify({'prediction': prediction_text, 'recommendation': recommendation_text})
-
-if __name__ == '__main__':
-    st.balloons()  # Optional: Display Streamlit balloons on startup
-    app.run(debug=True)  # Run the Flask app for API endpoint
+    # Display results
+    st.subheader("Prediction Results")
+    st.write(f"**Predicted Anemia Level:** {prediction_text}")
+    st.write(f"**Recommendation:** {recommendation_text}")
