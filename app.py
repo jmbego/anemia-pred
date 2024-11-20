@@ -116,5 +116,5 @@ def make_prediction():
     return render_template('result.html', prediction_text=f'Predicted Anemia Level: {prediction_text}', recommendation_text=recommendation_text)
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run()
 
